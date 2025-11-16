@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOB4.Console", "NZOB4.Console\NZOB4.Console.csproj", "{4B696135-9625-47ED-91EA-2044CAD21F46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B696135-9625-47ED-91EA-2044CAD21F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B696135-9625-47ED-91EA-2044CAD21F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B696135-9625-47ED-91EA-2044CAD21F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B696135-9625-47ED-91EA-2044CAD21F46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0021F3AA-65E0-48DE-993A-9B49FD6767C5}
+	EndGlobalSection
+EndGlobal
