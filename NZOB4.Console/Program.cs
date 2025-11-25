@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Security.Cryptography.X509Certificates;
-int Id = 0;
+
 List<Product> products = new List<Product>();
 start:
 Console.WriteLine("------ Mini POS -----");
@@ -38,8 +38,8 @@ void AddProduct()
     int productQuentity = Convert.ToInt32(Console.ReadLine());
     Console.Write("Enter Price : ");
     decimal productPrice = Convert.ToDecimal(Console.ReadLine());
-    Console.WriteLine("Product Save Successfully");
     products.Add(new Product(productName, productQuentity, productPrice));
+    Console.WriteLine("Product Save Successfully");  
 }
 
 public class Product
@@ -52,7 +52,6 @@ public class Product
     }
     public string Name { get; set; }
     public decimal Price { get; set; }
-
     public int Quantity { get; set; }
 
 }
