@@ -9,8 +9,8 @@ namespace Library.ConsoleApp
             LibraryServices libraryServices = new LibraryServices();
         start:
             Console.WriteLine("Mini Library Management System!");
-            Console.WriteLine("1. Admin");
-            Console.WriteLine("2. User");
+            Console.WriteLine("1. Admin Type");
+            Console.WriteLine("2. User Type");
             Console.WriteLine("3. Exit");
 
             Console.Write("Choose Your User Type : ");

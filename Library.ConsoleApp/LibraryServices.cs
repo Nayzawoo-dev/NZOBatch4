@@ -162,7 +162,7 @@ public class LibraryServices
             case 1:
             before:
                 Console.WriteLine("1. Book Management");
-                Console.WriteLine("2. Look Book Loan");
+                Console.WriteLine("2. Look Book List And Loan");
                 Console.WriteLine("3. Exit");
                 Console.Write("Choose Your Option : ");
                 int option1 = Convert.ToInt32(Console.ReadLine());
@@ -175,7 +175,7 @@ public class LibraryServices
                 break;
             case 2:
             reverse:
-                Console.WriteLine("1. Look Book Loan");
+                Console.WriteLine("1. Look Book List And Loan");
                 Console.WriteLine("2. Exit");
                 Console.Write("Choose Your Option : ");
                 int option2 = Convert.ToInt32(Console.ReadLine());
