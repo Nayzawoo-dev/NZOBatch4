@@ -134,7 +134,13 @@ public class LibraryServices
         }
 
         Console.Write("Enter Book Code You Want To Loan : ");
-        int id = Convert.ToInt32(Console.ReadLine());
+        string loanid = Console.ReadLine()!;
+        if (string.IsNullOrEmpty(loanid))
+        {
+            return;
+        }
+
+        int id = Convert.ToInt32(loanid);
 
         Book? res = book.Where(x => x.Id == id).FirstOrDefault();
 
@@ -158,6 +164,7 @@ public class LibraryServices
                 Console.WriteLine("1. Book Management");
                 Console.WriteLine("2. Look Book Loan");
                 Console.WriteLine("3. Exit");
+                Console.Write("Choose Your Option : ");
                 int option1 = Convert.ToInt32(Console.ReadLine());
                 switch (option1)
                 {
@@ -170,6 +177,7 @@ public class LibraryServices
             reverse:
                 Console.WriteLine("1. Look Book Loan");
                 Console.WriteLine("2. Exit");
+                Console.Write("Choose Your Option : ");
                 int option2 = Convert.ToInt32(Console.ReadLine());
                 switch (option2)
                 {
