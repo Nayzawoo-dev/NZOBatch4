@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.ConsoleApp", "Libra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.ConsoleApp", "Product.ConsoleApp\Product.ConsoleApp.csproj", "{0D917F0E-20F1-436A-9F42-AE418EA3E3BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdoandDapper", "AdoandDapper", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ado.net.ConsoleApp", "Ado.net.ConsoleApp\Ado.net.ConsoleApp.csproj", "{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{0D917F0E-20F1-436A-9F42-AE418EA3E3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D917F0E-20F1-436A-9F42-AE418EA3E3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D917F0E-20F1-436A-9F42-AE418EA3E3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9FEE1034-7EA3-42BF-8FBB-ADA1D2CEAABE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0021F3AA-65E0-48DE-993A-9B49FD6767C5}

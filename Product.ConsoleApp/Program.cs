@@ -25,45 +25,45 @@ adt.Fill(dt);
 //Insert
 #region
 
-string query = @"INSERT INTO [dbo].[Tbl_Product]
-           ([ProductName]
-           ,[Price]
-           ,[Quantity]
-           ,[IsDelete])
-     VALUES
-           ('Watermalon'
-           ,1000
-           ,30
-           ,0)";
-SqlCommand cmd = new SqlCommand(query, connection);
-int res = cmd.ExecuteNonQuery();
+//string query = @"INSERT INTO [dbo].[Tbl_Product]
+//           ([ProductName]
+//           ,[Price]
+//           ,[Quantity]
+//           ,[IsDelete])
+//     VALUES
+//           ('Watermalon'
+//           ,1000
+//           ,30
+//           ,0)";
+//SqlCommand cmd = new SqlCommand(query, connection);
+//int res = cmd.ExecuteNonQuery();
 
-string message = res is 1 ? "Insert Successful" : "Insert Failed";
+//string message = res is 1 ? "Insert Successful" : "Insert Failed";
 
 #endregion
 
 //Update
 #region
 
-string query = @"UPDATE [dbo].[Tbl_Product]
-   SET [ProductName] = 'Apple'
- WHERE Id = 1";
-SqlCommand cmd = new SqlCommand(query, connection);
-int res = cmd.ExecuteNonQuery();
+//string query = @"UPDATE [dbo].[Tbl_Product]
+//   SET [ProductName] = 'Apple'
+// WHERE Id = 1";
+//SqlCommand cmd = new SqlCommand(query, connection);
+//int res = cmd.ExecuteNonQuery();
 
-string message = res is 1 ? "Update Successful" : "Update Failed";
+//string message = res is 1 ? "Update Successful" : "Update Failed";
 
 #endregion
 
 //Delete
 #region
 
-string query = @"DELETE FROM [dbo].[Tbl_Product]
-      WHERE Id = 1";
-SqlCommand cmd = new SqlCommand(query, connection);
-int res = cmd.ExecuteNonQuery();
+//string query = @"DELETE FROM [dbo].[Tbl_Product]
+//      WHERE Id = 1";
+//SqlCommand cmd = new SqlCommand(query, connection);
+//int res = cmd.ExecuteNonQuery();
 
-string message = res is 1 ? "Delete Successful" : "Delete Failed";
+//string message = res is 1 ? "Delete Successful" : "Delete Failed";
 
 #endregion
 
