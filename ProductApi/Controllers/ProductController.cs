@@ -8,12 +8,7 @@ namespace ProductApi.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly AppDbContext _context;
-
-        public ProductController(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = new AppDbContext();
 
         [HttpGet]
         public IActionResult GetAll()
