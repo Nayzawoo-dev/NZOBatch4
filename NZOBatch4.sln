@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ConsoleApp", "Blog.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Myanmarmonth.Console", "Myanmarmonth.Console\Myanmarmonth.Console.csproj", "{F5594FF7-5256-49D4-B2B1-0C50A3A66B11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonthApi", "MonthApi\MonthApi.csproj", "{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{BE6FFDED-4E5A-4F69-B24D-75369122BA2C} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{C61A0B51-5C2E-4FBD-926A-F4FEA515DC73} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11} = {F232C057-4756-43AD-9C5D-B34936316EC2}
+		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0021F3AA-65E0-48DE-993A-9B49FD6767C5}
