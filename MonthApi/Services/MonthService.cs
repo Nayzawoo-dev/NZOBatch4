@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 public class MonthService : IMonthService
 {
@@ -7,7 +7,7 @@ public class MonthService : IMonthService
 
     public MonthService(IConfiguration configuration)
     {
-        _connectionString = configuration.GetConnectionString("DefaultConnection");
+        _connectionString = configuration.GetConnectionString("DbConnection")!;
     }
 
     private SqlConnection GetConnection()
@@ -33,16 +33,5 @@ WHERE MonthMm LIKE '%' + @Keyword + '%'
 ";
 
         return await connection.QueryAsync<Tbl_Months>(sql, new { Keyword = keyword });
-    }
-
-    public class Tbl_Months
-    {
-        public int Id { get; set; }
-        public string MonthMm { get; set; }
-        public string MonthEn { get; set; }
-        public string FestivalMm { get; set; }
-        public string FestivalEn { get; set; }
-        public string Description { get; set; }
-        public string Detail { get; set; }
-    }
+    }   
 }
