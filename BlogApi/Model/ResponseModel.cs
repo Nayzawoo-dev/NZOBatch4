@@ -14,8 +14,8 @@ namespace BlogApi.Model
         public string Message { get; set; }
 
         public int? Id { get; set; }
-        public string Caption { get; set; }
-        public DateTime Date { get; set; }
+        public string? Caption { get; set; } = string.Empty;
+        public DateTime? Date { get; set; } = null;
     }
 
     public class ReadResponseModelByList

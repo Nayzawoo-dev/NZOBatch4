@@ -17,6 +17,16 @@ namespace BlogApi.Services
 
         public async Task<CreateResponseModel> CreateAsync([FromBody] CreateRequestModel model)
         {
+            CreateResponseModel response;
+            if (string.IsNullOrEmpty(model.Caption))
+            {
+                response = new CreateResponseModel
+                {
+                    Success = false,
+                    Message = "Caption Needed?"
+                };
+                goto final;
+            }
             TblBlog blog = new TblBlog
             {
                 Caption = model.Caption,
@@ -25,11 +35,12 @@ namespace BlogApi.Services
             await _context.TblBlogs.AddAsync(blog);
             var result = await _context.SaveChangesAsync();
             var message = result > 0 ? "Post Create Successful" : "Post Create Failed";
-            var response = new CreateResponseModel
+            response = new CreateResponseModel
             {
                 Success = result > 0,
                 Message = message
             };
+        final:
             return response;
         }
 
@@ -48,16 +59,17 @@ namespace BlogApi.Services
 
         public async Task<ReadResponseModelById> ReadAsync(int id)
         {
+            ReadResponseModelById model;
             var list = await _context.TblBlogs.FirstOrDefaultAsync(x => x.Id == id);
-            var model = new ReadResponseModelById
+
+            model = new ReadResponseModelById
             {
                 Success = list is not null,
-                Message = list is not null ? "Data Found" : "Data Not Found",
-                Id = list.Id,
-                Caption = list.Caption,
-                Date = DateTime.Now,
+                Message = list is not null ? "Data Found" : "No Data Found",
+                Id = list is not null ? list.Id : 0,
+                Caption = list is not null ? list.Caption : string.Empty,
+                Date = list is not null ? list.Date : null
             };
-
             return model;
         }
 
