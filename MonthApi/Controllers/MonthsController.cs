@@ -24,7 +24,7 @@ public class MonthsController : ControllerBase
     }
 
     // GET api/months/search?keyword=January
-    [HttpGet("search")]
+    [HttpGet("search/{keyword}")]
     public async Task<IActionResult> Search(string keyword)
     {
         var result = await _monthService.SearchByMonthAsync(keyword);
