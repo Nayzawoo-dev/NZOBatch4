@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Myanmarmonth.Console", "Mya
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonthApi", "MonthApi\MonthApi.csproj", "{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC(collection)", "MVC(collection)", "{2C0DE265-BEEC-4B96-BB1A-99B39F1A5CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.MvcApp", "Blog.MvcApp\Blog.MvcApp.csproj", "{729A75B0-5123-416D-ABBF-E1188D1234EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +102,7 @@ Global
 		{C61A0B51-5C2E-4FBD-926A-F4FEA515DC73} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78} = {F232C057-4756-43AD-9C5D-B34936316EC2}
+		{729A75B0-5123-416D-ABBF-E1188D1234EF} = {2C0DE265-BEEC-4B96-BB1A-99B39F1A5CA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0021F3AA-65E0-48DE-993A-9B49FD6767C5}
