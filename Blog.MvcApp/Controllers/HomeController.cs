@@ -29,14 +29,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        BlogResponseModel model = new BlogResponseModel()
+        try
         {
-            Id = 1,
-            Name = "Nay Zaw Oo",
-            Description = "I Crush You Ma Ma"
-        };
+            throw new Exception("Internal Server Error");
+            BlogResponseModel model = new BlogResponseModel()
+            {
+                Id = 1,
+                Name = "Nay Zaw Oo",
+                Description = "I Crush You Ma Ma"
+            };
 
-        List<CommentResponseModel> comments = new List<CommentResponseModel>()
+            List<CommentResponseModel> comments = new List<CommentResponseModel>()
 {
     new CommentResponseModel()
     {
@@ -100,16 +103,28 @@ public class HomeController : Controller
     }
 };
 
-        ViewData["Comments"] = comments;
-        ViewBag.Comments = comments; 
-        TempData["LastUpdated"] = DateTime.Now.ToString("g");
-
-        return View(comments);
+            ViewData["Comments"] = comments;
+            ViewBag.Comments = comments;
+            TempData["LastUpdated"] = DateTime.Now.ToString("g");
+            return View(comments);
+        }
+        catch (Exception ex) 
+        {
+            ViewData["Error"] = ex.Message;
+            ViewBag.Error = ex.Message;
+            TempData["Error"] = ex.Message;
+            return RedirectToAction("ContactUs");
+        }
     }
 
     public IActionResult Privacy()
     {
-        return View("Privacy");
+        return View();
+    }
+
+    public IActionResult ContactUs()
+    {
+        return View("ContactUs");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
