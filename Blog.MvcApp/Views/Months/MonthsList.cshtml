@@ -9,7 +9,7 @@
 
     <div class="row">
 
-        @if (Model.Success && Model.Data.Any())
+        @if (Model.Success && Model.Data is not null && Model.Data.Any())
         {
             foreach (var item in Model.Data)
             {
