@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC(collection)", "MVC(coll
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.MvcApp", "Blog.MvcApp\Blog.MvcApp.csproj", "{729A75B0-5123-416D-ABBF-E1188D1234EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.MvcApp", "Database.MvcApp\Database.MvcApp.csproj", "{8CFCE36B-355D-D567-7998-31FF320BF314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{729A75B0-5123-416D-ABBF-E1188D1234EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFCE36B-355D-D567-7998-31FF320BF314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFCE36B-355D-D567-7998-31FF320BF314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFCE36B-355D-D567-7998-31FF320BF314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFCE36B-355D-D567-7998-31FF320BF314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{F5594FF7-5256-49D4-B2B1-0C50A3A66B11} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{9EB5C819-CE3E-47FD-996D-4D7BA3935F78} = {F232C057-4756-43AD-9C5D-B34936316EC2}
 		{729A75B0-5123-416D-ABBF-E1188D1234EF} = {2C0DE265-BEEC-4B96-BB1A-99B39F1A5CA7}
+		{8CFCE36B-355D-D567-7998-31FF320BF314} = {2C0DE265-BEEC-4B96-BB1A-99B39F1A5CA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0021F3AA-65E0-48DE-993A-9B49FD6767C5}

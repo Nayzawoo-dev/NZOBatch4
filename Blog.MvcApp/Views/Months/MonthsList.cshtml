@@ -1,0 +1,53 @@
+﻿@model MonthsListResponseModel
+@{
+    ViewData["Title"] = "MonthsList";
+}
+
+<div class="container mt-4">
+
+    <h3 class="mb-4 text-center">@Model.Message</h3>
+
+    <div class="row">
+
+        @if (Model.Success && Model.Data.Any())
+        {
+            foreach (var item in Model.Data)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100 border-0">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title text-primary fw-bold">
+                                @item.MonthMm
+                            </h5>
+
+                            <h6 class="card-subtitle mb-2 text-success">
+                                @item.FestivalMm
+                            </h6>
+
+                            <p class="card-text text-muted">
+                                @item.Description
+                            </p>
+
+                            <hr />
+                        </div>
+
+                        <div class="card-footer bg-white text-end border-0">
+                            <span class="badge bg-info">ID : @item.Id</span>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center text-danger">
+                No Data Available
+            </div>
+        }
+
+    </div>
+
+</div>
