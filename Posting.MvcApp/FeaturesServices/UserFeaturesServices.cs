@@ -1,4 +1,5 @@
 ﻿using Posting.MvcApp.DatabaseServices;
+
 namespace Posting.MvcApp.FeaturesServices;
 
 public class UserFeaturesServices
@@ -10,10 +11,11 @@ public class UserFeaturesServices
         _dapperServices = dapperServices;
     }
 
-    public List<UserModel> ReadUser()
+    public async Task<List<UserModel>> ReadUserAsync()
     {
         string query = "select * from Tbl_Users";
-        var res = _dapperServices.Query<UserModel>(query);
-        return res;
+        List<UserModel> result = await _dapperServices.QueryAsync<UserModel>(query);
+        return result;
     }
 }
+
