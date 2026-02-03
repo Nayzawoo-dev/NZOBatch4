@@ -12,7 +12,7 @@ namespace Posting.MvcApp.Controllers
             _services = services;
         }
 
-        public async Task<IActionResult> UserList()
+        public async Task<IActionResult> Index()
         {
             List<UserModel> lst = await _services.ReadUserAsync();
             return View(lst);
