@@ -1,5 +1,5 @@
-using Posting.MvcApp.FeaturesServices;
 using Posting.MvcApp.DatabaseServices;
+using Posting.MvcApp.FeaturesServices.UserServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

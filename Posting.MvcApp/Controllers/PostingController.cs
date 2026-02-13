@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Posting.MvcApp.FeaturesServices;
+using Posting.MvcApp.FeaturesServices.UserServices;
 
 namespace Posting.MvcApp.Controllers
 {
@@ -14,8 +14,20 @@ namespace Posting.MvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<UserModel> lst = await _services.ReadUserAsync();
+            List<ResponseUserModel> lst = await _services.ReadUserAsync();
             return View(lst);
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(RequestUserModel model)
+        {
+            var res = await _services.CreateUserAsync(model);
+            return RedirectToAction("Index");
         }
     }
 }

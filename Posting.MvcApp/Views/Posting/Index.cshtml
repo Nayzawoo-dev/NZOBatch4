@@ -1,4 +1,4 @@
-﻿@model List<UserModel>
+﻿@model List<ResponseUserModel>
 @{
     ViewData["Title"] = $"{Model.Count}";
 }
@@ -8,21 +8,27 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var user in Model)
     {
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">@user.username</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Roll No: @user.roll_no</h6>
-                    <p class="card-text">
-                        <strong>ID:</strong> @user.id <br />
-                        <strong>Email:</strong> @user.email
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">User Info Card</small>
+        if (!user.IsSuccess)
+        {
+            <h1>@user.Message</h1>
+        }
+        else
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@user.username</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Roll No: @user.roll_no</h6>
+                        <p class="card-text">
+                            <strong>Email:</strong> @user.email
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">User Info Card</small>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 </div>
 

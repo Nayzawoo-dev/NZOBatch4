@@ -31,14 +31,24 @@ namespace Posting.MvcApp.DatabaseServices
         }
 
 
-        public int Execute(string query, object? parameters = null)
+        //public int Execute(string query, object? parameters = null)
+        //{
+        //    SqlConnection connection = new SqlConnection(_connection.ConnectionString);
+        //    connection.Open();
+        //    var res = connection.Execute(query, parameters);
+        //    connection.Close();
+        //    return res;
+        //} this old method
+
+        public async Task<int> ExecuteAsync(string query, object? parameters = null)
         {
-            SqlConnection connection = new SqlConnection(_connection.ConnectionString);
+            using var connection = new SqlConnection(_connection.ConnectionString);
             connection.Open();
-            var res = connection.Execute(query, parameters);
+            var res = await connection.ExecuteAsync(query, parameters);
             connection.Close();
             return res;
         }
+
 
 
     }
