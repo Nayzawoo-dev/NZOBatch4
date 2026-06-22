@@ -1,8 +1,12 @@
-﻿@model List<WalletModel>
+﻿@model List<StudentModel>
 <h1>BlogIndex @Model.Count</h1>
 @{
     int count = 0;
 }
+
+<h1>Studenet Count (@Model.Count</h1>
+
+<a class="btn btn-outline-success" href="Student/Create">Add New Student</a>
 
 <table class="table table-responsive">
 
@@ -12,7 +16,7 @@
         <th>Name</th>
     </tr>
 
-  <tbody>
+    <tbody>
         @foreach (var item in Model)
         {
             count++;

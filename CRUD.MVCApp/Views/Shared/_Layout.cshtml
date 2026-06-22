@@ -36,6 +36,17 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @{
+                bool isSuccess = Convert.ToBoolean(TempData["isSuccess"] ?? false);
+                string message = Convert.ToString(TempData["message"] ?? string.Empty);
+            }
+            
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div id="divAlert" class="alert alert-@(isSuccess ? "success" : "danger")">
+                    @message
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
@@ -49,5 +60,12 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        setTimeout(function(){
+        $('#divAlert').remove();
+        },3000);
+
+    </script>
 </body>
 </html>
