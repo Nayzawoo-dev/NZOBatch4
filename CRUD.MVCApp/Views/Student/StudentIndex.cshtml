@@ -11,7 +11,7 @@
 <table class="table table-responsive">
 
     <tr>
-        <th>No.</th>
+        <th></th>
         <th>Roll No</th>
         <th>Name</th>
     </tr>
@@ -19,9 +19,9 @@
     <tbody>
         @foreach (var item in Model)
         {
-            count++;
+           
             <tr>
-                <td>@count</td>
+                <td><a href="/Student/Edit/@item.Id" class="btn btn-outline-success">Edit</a></td>
                 <td>@item.Roll_No</td>
                 <td>@item.Name</td>
             </tr>
