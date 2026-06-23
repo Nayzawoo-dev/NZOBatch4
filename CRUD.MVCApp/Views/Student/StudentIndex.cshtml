@@ -19,9 +19,13 @@
     <tbody>
         @foreach (var item in Model)
         {
-           
+
             <tr>
-                <td><a href="/Student/Edit/@item.Id" class="btn btn-outline-success">Edit</a></td>
+                <td>
+                    <a href="/Student/Edit/@item.Id" class="btn btn-outline-success">Edit</a>
+                    <a href="/Student/Delete/@item.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+
                 <td>@item.Roll_No</td>
                 <td>@item.Name</td>
             </tr>

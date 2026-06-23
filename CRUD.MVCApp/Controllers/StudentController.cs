@@ -10,14 +10,13 @@ namespace CRUD.MVCApp.Controllers
 {
     public class StudentController : Controller
     {
-        SqlConnectionStringBuilder connectionstring = new SqlConnectionStringBuilder()
+        private readonly SqlConnectionStringBuilder connectionstring;
+
+        public StudentController(IConfiguration configuration)
         {
-            DataSource = "DELL",
-            InitialCatalog = "Revision",
-            UserID = "sa",
-            Password = "root",
-            TrustServerCertificate = true
-        };
+            connectionstring = new SqlConnectionStringBuilder(configuration.GetConnectionString("DbConnection"));
+        }
+
         [ActionName("Index")]
         public async Task<IActionResult> StudentIndex()
         {
@@ -101,9 +100,26 @@ namespace CRUD.MVCApp.Controllers
             string message = isSuccess ? "Success" : "Failed";
             TempData["isSuccess"] = isSuccess;
             TempData["message"] = message;
-
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [ActionName("Delete")]
+        public async Task<IActionResult> StudentDelete(int Id)
+        {
+            using IDbConnection db = new SqlConnection(connectionstring.ConnectionString);
+            db.Open();
+            string query = @"DELETE FROM [dbo].[Students]
+      WHERE Id=@Id";
+            var lst = await db.ExecuteAsync(query, new { Id = Id });
+            bool isSuccess = lst > 0;
+            string message = isSuccess ? "Success" : "Failed";
+            TempData["isSuccess"] = isSuccess;
+            TempData["message"] = message;
+            return RedirectToAction("Index");
+        }
+
+
     }
 
     public class StudentModel
