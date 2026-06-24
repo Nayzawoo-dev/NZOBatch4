@@ -1,0 +1,50 @@
+﻿
+<h1>Add New Student</h1>
+
+<label for="rollno">Roll No:</label>
+<br>
+<input type="text" id="rollno" name="Roll_No">
+<br>
+<br>
+
+<label for="name">Name:</label>
+<br>
+<input type="text" id="name" name="Name">
+<br>
+<br>
+
+<button type="button" id="btnSave">Save</button>
+<button type="button">Cancel</button>
+
+@section scripts {
+    <script>
+            $('#btnSave').click(function(){
+                const item = {
+                    Roll_No : $('#rollno').val(),
+                    Name : $('#name').val()
+                }
+
+                $.ajax({
+            url: '/Student/Save',
+            type: 'Post',
+            data : { requestModel : item },
+            success: function(response) {
+               console.log({response});
+               if(!response.IsSuccess){
+                   alert("Error" + response.Message);
+                   return;
+               }
+                alert(response.Message);
+                window.location.href = "/Student/Index";
+            },
+            error: function(requests, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+            });
+
+           
+          
+    </script>
+}

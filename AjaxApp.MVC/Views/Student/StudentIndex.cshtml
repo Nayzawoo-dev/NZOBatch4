@@ -1,4 +1,4 @@
-﻿<h1>Studenet Count</h1>
+﻿<h1>Studenet Count<span id="txtCount"></span></h1>
 
 <a class="btn btn-outline-success" href="Student/Create">Add New Student</a>
 
@@ -10,14 +10,40 @@
         <th>Name</th>
     </tr>
 
-    <tbody>
-      
+    <tbody id="tbDataTable">
     </tbody>
 
 </table>
 
-@section scripts{
+@section scripts {
     <script>
-        alert("This is Index Page");
+        loadData();
+         function loadData(){
+              $.ajax({
+            url: '/Student/Index',
+            type: 'Post',
+
+            success: function(response) {
+               for(let i = 0; i < response.Data.length; i++){
+                   let item = response.Data[i];
+                   let row = `
+                   <tr>
+                <td>
+                    <a href="/Student/Edit/${item.Id}" class="btn btn-outline-success">Edit</a>
+                    <a href="/Student/Delete/${item.Id}" class="btn btn-outline-danger">Delete</a>
+                </td>
+
+                <td>${item.Roll_No}</td>
+                <td>${item.Name}</td>
+            </tr>
+                   `;
+                   $('#tbDataTable').append(row);
+               }
+            },
+            error: function(requests, status, error) {
+                console.error('Error:', error);
+            }
+        });
+         }
     </script>
 }
