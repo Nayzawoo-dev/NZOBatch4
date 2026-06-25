@@ -17,34 +17,5 @@
 <button type="button">Cancel</button>
 
 @section scripts {
-    <script>
-            $('#btnSave').click(function(){
-                const item = {
-                    Roll_No : $('#rollno').val(),
-                    Name : $('#name').val()
-                }
-
-                $.ajax({
-            url: '/Student/Save',
-            type: 'Post',
-            data : { requestModel : item },
-            success: function(response) {
-               console.log({response});
-               if(!response.IsSuccess){
-                   alert("Error" + response.Message);
-                   return;
-               }
-                alert(response.Message);
-                window.location.href = "/Student/Index";
-            },
-            error: function(requests, status, error) {
-                console.error('Error:', error);
-            }
-        });
-
-            });
-
-           
-          
-    </script>
+     <script src="~/js/Student/studentCreate.js" ></script>
 }

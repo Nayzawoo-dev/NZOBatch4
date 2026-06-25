@@ -67,6 +67,32 @@ namespace AjaxApp.MVC.Controllers
             return Json(new { IsSuccess = isSuccess, Message = message });
 
         }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> StudentDelete(StudentModel requestModel)
+        {
+
+            try
+            {
+                using IDbConnection db = new SqlConnection(connectionstring.ConnectionString);
+                db.Open();
+
+                string query = @"DELETE FROM [dbo].[Students] WHERE Id = @Id";
+
+                var result = await db.ExecuteAsync(query, requestModel);
+                bool isSuccess = result > 0;
+                string message = isSuccess ? "Success" : "Failed";
+
+                return Json(new { IsSuccess = isSuccess, Message = message });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { IsSuccess = false, Message = "An error occurred while trying to delete the record." });
+            }
+
+        }
     }
 
     public class StudentModel

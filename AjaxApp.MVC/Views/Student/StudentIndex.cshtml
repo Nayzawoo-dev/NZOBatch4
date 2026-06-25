@@ -1,6 +1,22 @@
 ﻿<h1>Studenet Count<span id="txtCount"></span></h1>
 
-<a class="btn btn-outline-success" href="Student/Create">Add New Student</a>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+  Add New Student
+</button>
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="studentModalLabel">Add New Student</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <partial name="~/Views/Student/StudentCreate.cshtml" />
+      </div>
+    </div>
+  </div>
+</div>
 
 <table class="table table-responsive">
 
@@ -16,34 +32,5 @@
 </table>
 
 @section scripts {
-    <script>
-        loadData();
-         function loadData(){
-              $.ajax({
-            url: '/Student/Index',
-            type: 'Post',
-
-            success: function(response) {
-               for(let i = 0; i < response.Data.length; i++){
-                   let item = response.Data[i];
-                   let row = `
-                   <tr>
-                <td>
-                    <a href="/Student/Edit/${item.Id}" class="btn btn-outline-success">Edit</a>
-                    <a href="/Student/Delete/${item.Id}" class="btn btn-outline-danger">Delete</a>
-                </td>
-
-                <td>${item.Roll_No}</td>
-                <td>${item.Name}</td>
-            </tr>
-                   `;
-                   $('#tbDataTable').append(row);
-               }
-            },
-            error: function(requests, status, error) {
-                console.error('Error:', error);
-            }
-        });
-         }
-    </script>
+  <script src="~/js/Student/studentCreate.js" ></script>
 }
