@@ -53,13 +53,24 @@ namespace AjaxApp.MVC.Controllers
 
             using IDbConnection db = new SqlConnection(connectionstring.ConnectionString);
             db.Open();
-            string query = @"INSERT INTO [dbo].[Students]
+            string query = string.Empty;
+            if (requestModel.Id == 0)
+            {
+                query = @"INSERT INTO [dbo].[Students]
            ([Roll_No]
            ,[Name])
      VALUES
            (@Roll_No
            ,@Name
            )";
+            }
+            else
+            {
+                query = @"UPDATE [dbo].[Students]
+   SET [Roll_No] = @Roll_No
+      ,[Name] = @Name
+ WHERE @Id = Id";
+            }
             var result = await db.ExecuteAsync(query, requestModel);
             bool isSuccess = result > 0;
             string message = isSuccess ? "Success" : "Failed";
@@ -67,6 +78,8 @@ namespace AjaxApp.MVC.Controllers
             return Json(new { IsSuccess = isSuccess, Message = message });
 
         }
+
+
 
         [HttpPost]
         [ActionName("Delete")]
@@ -93,6 +106,33 @@ namespace AjaxApp.MVC.Controllers
             }
 
         }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        public async Task<IActionResult> StudentEdit(StudentModel requestModel)
+        {
+
+            try
+            {
+                using IDbConnection db = new SqlConnection(connectionstring.ConnectionString);
+                db.Open();
+
+                string query = @"SELECT * FROM [dbo].[Students] WHERE Id = @Id";
+
+                var result = await db.QueryFirstOrDefaultAsync<StudentModel>(query, requestModel);
+                bool isSuccess = result is not null;
+                string message = isSuccess ? "Success" : "Failed";
+
+                return Json(new { IsSuccess = isSuccess, Message = message, Data = result });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { IsSuccess = false, Message = "An error occurred while trying to delete the record." });
+            }
+
+        }
+
     }
 
     public class StudentModel
