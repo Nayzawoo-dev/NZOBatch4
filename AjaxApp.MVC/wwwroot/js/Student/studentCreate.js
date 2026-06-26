@@ -2,6 +2,14 @@
 $(document).ready(function () {
     loadData();
     $('#btnAddNew').click(function () {
+
+        Notiflix.Notify.merge({
+            width: '300px',
+            position: 'right-top', // ညာဘက်အပေါ်ထောင့်မှာ ပြမယ်
+            timeout: 5000, // ၃ စက္ကန့်ကြာရင် ပျောက်သွားမယ်
+            showOnlyTheLastOne: true
+        });
+
         AllClear();
         $('#btnSave').text("Save");
         $('#studentModalLabel').text("Add New Student");
@@ -12,10 +20,14 @@ $(document).ready(function () {
 
 
 function loadData() {
+
+    Notiflix.Loading.circle('Loading...');
+
     $.ajax({
         url: '/Student/Index',
         type: 'POST',
         success: function (response) {
+            Notiflix.Loading.remove();
             $("#tbDataTable").html('');
             for (let i = 0; i < response.Data.length; i++) {
                 let item = response.Data[i];
@@ -36,7 +48,8 @@ function loadData() {
             bindEditClick();
         },
         error: function (requests, status, error) {
-            console.error('Error:', error);
+            Notiflix.Loading.remove();
+            Notiflix.Notify.failure('Data ဆွဲယူရာတွင် အမှားအယွင်းရှိနေပါသည်။');
         }
     });
 }
@@ -47,13 +60,16 @@ function bindEditClick() {
         const id = $(this).data('id');
         const item = { Id: id };
 
+        Notiflix.Loading.circle('Fetching data...');
+
         $.ajax({
             url: `/Student/Edit`,
             type: "POST",
             data: { requestModel: item },
             success: function (response) {
+                Notiflix.Loading.remove();
                 if (!response.IsSuccess) {
-                    alert("Error: " + response.Message);
+                    Notiflix.Notify.failure("Error: " + response.Message);
                     return;
                 }
 
@@ -69,7 +85,8 @@ function bindEditClick() {
                 $('#createModal').modal('show');
             },
             error: function (request, status, error) {
-                alert(request.responseText);
+                Notiflix.Loading.remove();
+                Notiflix.Notify.failure('Error occurred!');
             }
         });
     });
@@ -84,26 +101,26 @@ $('#btnSave').click(function () {
         Name: $('#name').val()
     };
 
+    Notiflix.Loading.circle('Saving...');
+
     $.ajax({
         url: '/Student/Save', // Controller ဘက်က ဒီ Action တစ်ခုထဲနဲ့ Create/Update နှစ်ခုလုံး လက်ခံနိုင်ရပါမယ်
         type: 'POST',
         data: { requestModel: item },
         success: function (response) {
+            Notiflix.Loading.remove();
             if (!response.IsSuccess) {
-                alert("Error: " + response.Message);
+                Notiflix.Notify.failure("Error: " + response.Message); // Failure Alert
                 return;
             }
 
-            alert(response.Message);
-
-            // Modal ကို ပိတ်မယ်
+            Notiflix.Notify.success(response.Message); // Success Alert 🎉
             $("#createModal").modal("hide");
-            AllClear();
-            // Page Refresh မလုပ်ဘဲ Table Data ကိုပဲ Update ဖြစ်အောင် loadData() ကို ပြန်ခေါ်မယ်
             loadData();
         },
         error: function (requests, status, error) {
-            console.error('Error:', error);
+            Notiflix.Loading.remove();
+            Notiflix.Notify.failure('သိမ်းဆည်းရာတွင် အမှားအယွင်းရှိခဲ့သည်။');
         }
     });
 });
@@ -112,28 +129,40 @@ $('#btnSave').click(function () {
 function bindDeleteClick() {
     $('.btn-delete').click(function () {
         const id = $(this).data('id');
-        if (!confirm("Are you sure you want to delete this student?")) {
-            return;
-        }
 
-        const item = { Id: id };
+        // Confirm Box ကိုပါ Notiflix ရဲ့ လှပတဲ့ Confirm Box နဲ့ အစားထိုးလိုက်ခြင်း
+        Notiflix.Confirm.show(
+            'Confirmation',
+            'Are you sure you want to delete this student?',
+            'Yes',
+            'No',
+            function okCb() { // 'Yes' နှိပ်ရင် အလုပ်လုပ်မယ့် အပိုင်း
+                Notiflix.Loading.circle('Deleting...');
+                const item = { Id: id };
 
-        $.ajax({
-            url: `/Student/Delete`,
-            type: "POST",
-            data: { requestModel: item },
-            success: function (response) {
-                if (!response.IsSuccess) {
-                    alert("Error: " + response.Message);
-                    return;
-                }
-                alert(response.Message);
-                loadData();
+                $.ajax({
+                    url: `/Student/Delete`,
+                    type: "POST",
+                    data: { requestModel: item },
+                    success: function (response) {
+                        Notiflix.Loading.remove();
+                        if (!response.IsSuccess) {
+                            Notiflix.Notify.failure("Error: " + response.Message);
+                            return;
+                        }
+                        Notiflix.Notify.success(response.Message); // Delete အောင်မြင်ရင် ပြမယ့် Success 🎉
+                        loadData();
+                    },
+                    error: function (request, status, error) {
+                        Notiflix.Loading.remove();
+                        Notiflix.Notify.failure('Error occurred!');
+                    }
+                });
             },
-            error: function (request, status, error) {
-                alert(request.responseText);
+            function cancelCb() { // 'No' နှိပ်ရင် ဘာမှမလုပ်ဘူး
+                return;
             }
-        });
+        );
     });
 }
 function AllClear() {
