@@ -4,33 +4,38 @@
     Add New Student
 </button>
 
+<input type="text" class="date-picker">
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="studentModalLabel">Add New Student</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <partial name="~/Views/Student/StudentCreate.cshtml" />
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentModalLabel">Add New Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <partial name="~/Views/Student/StudentCreate.cshtml" />
+
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<table class="table table-responsive">
-
-    <tr>
-        <th></th>
-        <th>Roll No</th>
-        <th>Name</th>
-    </tr>
+<table class="table table-responsive" id="myTable">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Roll No</th>
+            <th>Name</th>
+        </tr>
+    </thead>
 
     <tbody id="tbDataTable">
     </tbody>
-
 </table>
 
 @section scripts {
-  <script src="~/js/Student/studentCreate.js" ></script>
+    <script src="~/js/Student/studentCreate.js"></script>
+    <script>
+        datePicker();
+    </script>
 }

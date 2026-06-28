@@ -1,7 +1,7 @@
 ﻿let currentStudentId = 0;
-
+loadData();
 $(document).ready(function () {
-    loadData();
+
 
     $('#btnAddNew').click(function () {
         Notiflix.Notify.init({
@@ -19,14 +19,14 @@ $(document).ready(function () {
 
 // ၁။ Data ဆွဲယူခြင်း (Table ပေါ်တင်ပဲ Loading ပြအောင် ပြင်ထားပါတယ်)
 function loadData() {
-    Notiflix.Block.circle('#tbDataTable', 'Loading...');
+    Notiflix.Block.hourglass('#myTable', 'Loading...');
 
     $.ajax({
         url: '/Student/Index',
         type: 'POST',
         success: function (response) {
             // Block ကို ပြန်ဖြုတ်မယ်
-            Notiflix.Block.remove('#tbDataTable');
+            Notiflix.Block.remove('#myTable');
 
             $("#tbDataTable").html('');
             for (let i = 0; i < response.Data.length; i++) {
@@ -43,8 +43,10 @@ function loadData() {
                 $('#tbDataTable').append(row);
             }
 
+
             bindDeleteClick();
             bindEditClick();
+            let table = new DataTable('#myTable');
         },
         error: function (requests, status, error) {
             Notiflix.Block.remove('#tbDataTable');
@@ -60,7 +62,7 @@ function bindEditClick() {
         const item = { Id: id };
 
         // 💡 ပြင်ဆင်ချက်: Edit နှိပ်ရင်လည်း Page အပြည့်မဖြစ်အောင် Table ကိုပဲ Block ပြပါမယ်
-        Notiflix.Block.circle('#tbDataTable', 'Fetching data...');
+        Notiflix.Block.hourglass('#tbDataTable', 'Fetching data...');
 
         $.ajax({
             url: `/Student/Edit`,
@@ -99,7 +101,7 @@ $('#btnSave').click(function () {
     };
 
     // Modal Content ကိုပဲ လှပစွာ Block ထားမယ်
-    Notiflix.Block.circle('#createModal .modal-body', 'Saving...');
+    Notiflix.Block.hourglass('#createModal .modal-body', 'Saving...');
 
     $.ajax({
         url: '/Student/Save',
@@ -116,7 +118,7 @@ $('#btnSave').click(function () {
             Notiflix.Notify.success(response.Message);
             $("#createModal").modal("hide");
 
-           
+
             loadData();
         },
         error: function (requests, status, error) {
@@ -138,7 +140,7 @@ function bindDeleteClick() {
             'No',
             function okCb() {
                 // 💡 ပြင်ဆင်ချက်: Delete လုပ်ချိန်မှာလည်း Table နေရာလေးတင် Block လုပ်ပါမယ်
-                Notiflix.Block.circle('#tbDataTable', 'Deleting...');
+                Notiflix.Block.hourglass('#myTable', 'Deleting...');
                 const item = { Id: id };
 
                 $.ajax({
@@ -146,7 +148,7 @@ function bindDeleteClick() {
                     type: "POST",
                     data: { requestModel: item },
                     success: function (response) {
-                        Notiflix.Block.remove('#tbDataTable');
+                        Notiflix.Block.remove('#myTable');
                         if (!response.IsSuccess) {
                             Notiflix.Notify.failure("Error: " + response.Message);
                             return;
@@ -155,7 +157,7 @@ function bindDeleteClick() {
                         loadData();
                     },
                     error: function (request, status, error) {
-                        Notiflix.Block.remove('#tbDataTable');
+                        Notiflix.Block.remove('#myTable');
                         Notiflix.Notify.failure('Error occurred!');
                     }
                 });
@@ -171,4 +173,11 @@ function AllClear() {
     currentStudentId = 0;
     $('#rollno').val('');
     $('#name').val('');
+}
+
+function datePicker() {
+    $('.date-picker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoHide: true
+    });
 }
