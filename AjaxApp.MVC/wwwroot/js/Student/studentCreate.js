@@ -55,13 +55,13 @@ function loadData() {
     });
 }
 
-// ၂။ Edit Button နှိပ်လိုက်တဲ့အခါ
+
 function bindEditClick() {
     $('.btn-edit').click(function () {
         const id = $(this).data('id');
         const item = { Id: id };
 
-        // 💡 ပြင်ဆင်ချက်: Edit နှိပ်ရင်လည်း Page အပြည့်မဖြစ်အောင် Table ကိုပဲ Block ပြပါမယ်
+      
         Notiflix.Block.hourglass('#tbDataTable', 'Fetching data...');
 
         $.ajax({
@@ -92,23 +92,28 @@ function bindEditClick() {
     });
 }
 
-// ၃။ Save/Update Button ကို နှိပ်ခြင်း
-$('#btnSave').click(function () {
+
+$('#btnSave').click(function (e) {
+    e.preventDefault();
+    var l = Ladda.create(this);
+    l.start();
+
     const item = {
         Id: currentStudentId,
         Roll_No: $('#rollno').val(),
         Name: $('#name').val()
     };
 
-    // Modal Content ကိုပဲ လှပစွာ Block ထားမယ်
-    Notiflix.Block.hourglass('#createModal .modal-body', 'Saving...');
+
+    // Notiflix.Block.hourglass('#createModal .modal-body', 'Saving...');
 
     $.ajax({
         url: '/Student/Save',
         type: 'POST',
         data: { requestModel: item },
         success: function (response) {
-            Notiflix.Block.remove('#createModal .modal-body');
+            l.stop();
+            // Notiflix.Block.remove('#createModal .modal-body');
 
             if (!response.IsSuccess) {
                 Notiflix.Notify.failure("Error: " + response.Message);
@@ -122,7 +127,7 @@ $('#btnSave').click(function () {
             loadData();
         },
         error: function (requests, status, error) {
-            Notiflix.Block.remove('#createModal .modal-body');
+            // Notiflix.Block.remove('#createModal .modal-body');
             Notiflix.Notify.failure('သိမ်းဆည်းရာတွင် အမှားအယွင်းရှိခဲ့သည်။');
         }
     });
@@ -153,7 +158,14 @@ function bindDeleteClick() {
                             Notiflix.Notify.failure("Error: " + response.Message);
                             return;
                         }
-                        Notiflix.Notify.success(response.Message);
+                        // Notiflix.Notify.success(response.Message);
+                        Toastify({
+
+                            text: response.Message,
+
+                            duration: 3000
+
+                        }).showToast();
                         loadData();
                     },
                     error: function (request, status, error) {
@@ -181,3 +193,5 @@ function datePicker() {
         autoHide: true
     });
 }
+
+
