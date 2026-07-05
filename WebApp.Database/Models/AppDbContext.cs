@@ -18,13 +18,11 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Student> Students { get; set; }
 
    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Student>(entity =>
         {
-            entity.HasNoKey();
-
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Name)
                 .HasMaxLength(10)
                 .IsFixedLength();

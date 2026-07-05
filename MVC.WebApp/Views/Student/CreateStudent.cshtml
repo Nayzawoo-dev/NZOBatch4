@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Student Create";
+}
+<h1>Add New Student</h1>
+
+<form action="/Student/Save" method="post">
+    <label for="rollno">Roll No:</label><br>
+    <input type="text" id="rollno" name="RollNo"><br><br>
+
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="Name"><br><br>
+
+    <button type="submit">Save</button>
+    <button type="reset">Cancel</button>
+</form>

@@ -1,6 +1,8 @@
 ﻿using MVC.WebApp.Models;
 using Newtonsoft.Json;
+using System.Text;
 using System.Text.Json.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MVC.WebApp.Services
 {
@@ -40,6 +42,25 @@ namespace MVC.WebApp.Services
         //    return students ?? new List<StudentModel>();
         //}
 
+        
+        public async Task<bool> CreateStudentAsync(StudentModel student)
+        {
+            
+            var json = JsonConvert.SerializeObject(student);
+            var content = new StringContent(json, Encoding.UTF8, Application.Json);
+
+            
+            var response = await _httpClient.PostAsync("api/Student", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("Failed to create student.");
+            }
+        }
 
 
     }

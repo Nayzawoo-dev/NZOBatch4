@@ -19,8 +19,23 @@ namespace WebApp.API.Controller
         [HttpGet]
         public async Task<ActionResult> GetStudents()
         {
-            var lst = await _context.Students.ToListAsync();
+            List<Student> lst = await _context.Students.ToListAsync();
             return Ok(lst);
+        }
+
+     
+        [HttpPost]
+        public async Task<ActionResult> CreateStudent([FromBody] Student model)
+        {
+            if (model == null)
+            {
+                return BadRequest("Data is null");
+            }
+
+            _context.Students.Add(model);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Student created successfully!" });
         }
 
     }
