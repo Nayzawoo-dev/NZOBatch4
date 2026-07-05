@@ -4,11 +4,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient<IStudentServices, StudentServices>();
+//builder.Services.AddHttpClient<IStudentServices, StudentServices>(n => new HttpClient
+//{
+//    BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiUrl")!)
+//});
+builder.Services.AddScoped<IStudentServices, StudentServices>();
 
 var app = builder.Build();
 
-builder.Services.AddHttpClient<IStudentServices, StudentServices>();
-builder.Services.AddScoped<IStudentServices, StudentServices>();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

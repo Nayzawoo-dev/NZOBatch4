@@ -16,7 +16,7 @@ namespace MVC.WebApp.Controllers
         [ActionName("Index")]
         public async Task<IActionResult> Index()
         {
-            List<StudentModel> lst = await studentServices.GetWalletsAsync();
+            List<StudentModel> lst = await studentServices.GetStudentsAsync();
             return View("StudentIndex",lst);
         }
     }

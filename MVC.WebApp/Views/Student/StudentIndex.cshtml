@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<StudentModel>
+<h1>BlogIndex @Model.Count</h1>
 @{
+    int count = 0;
 }
+
+<h1>Studenet Count (@Model.Count</h1>
+
+<a class="btn btn-outline-success" href="Student/Create">Add New Student</a>
+
+<table class="table table-responsive">
+
+    <tr>
+        <th></th>
+        <th>Age</th>
+        <th>Roll No</th>
+        <th>Name</th>
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    <a href="/Student/Edit/@item.Id" class="btn btn-outline-success">Edit</a>
+                    <a href="/Student/Delete/@item.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+
+                <td>@item.Age</td>
+                <td>@item.RollNo</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

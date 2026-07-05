@@ -4,6 +4,6 @@ namespace MVC.WebApp.Services
 {
     public interface IStudentServices
     {
-        Task<List<StudentModel>> GetWalletsAsync();
+        Task<List<StudentModel>> GetStudentsAsync();
     }
 }

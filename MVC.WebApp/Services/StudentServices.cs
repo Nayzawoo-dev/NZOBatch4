@@ -7,15 +7,18 @@ namespace MVC.WebApp.Services
     public class StudentServices : IStudentServices
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
 
-        public StudentServices(HttpClient httpClient)
+        public StudentServices(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
+            _httpClient.BaseAddress = new Uri(_configuration.GetValue<string>("ApiUrl")!);
         }
 
-        public async Task<List<StudentModel>> GetWalletsAsync()
+        public async Task<List<StudentModel>> GetStudentsAsync()
         {
-            var response = await _httpClient.GetAsync("api/wallet");
+            var response = await _httpClient.GetAsync("api/Student");
 
             if (response.IsSuccessStatusCode)
             {
