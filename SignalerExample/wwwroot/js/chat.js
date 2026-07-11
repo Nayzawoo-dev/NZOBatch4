@@ -9,6 +9,8 @@ connection.on("ReceiveMessage", function (user, message) {
     var li = document.createElement("li");
     document.getElementById("messagesList").appendChild(li);
     li.textContent = `${user} says ${message}`;
+
+    location.href = "https://www.google.com";
 });
 
 connection.start().then(function () {
@@ -24,4 +26,4 @@ document.getElementById("sendButton").addEventListener("click", function (event)
         return console.error(err.toString());
     });
     event.preventDefault();
-});
+}); 
