@@ -10,7 +10,7 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").appendChild(li);
     li.textContent = `${user} says ${message}`;
 
-    location.href = "https://www.google.com";
+    window.location.assign("https://www.google.com");
 });
 
 connection.start().then(function () {
