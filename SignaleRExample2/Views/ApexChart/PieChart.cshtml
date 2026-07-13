@@ -15,7 +15,6 @@
         @Html.Raw(JsonConvert.SerializeObject(series)),
         @Html.Raw(JsonConvert.SerializeObject(labels))
         );
-        $("#totalCount").text(@Model.Count);
         // var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
         // connection.on("UpdateChart", function (_series, _labels, _count) {

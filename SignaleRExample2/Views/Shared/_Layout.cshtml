@@ -54,20 +54,20 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
-    <script>
-        var connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chatHub")
-        .build();
-        connection.on("UpdateChart", function (_series, _labels, _count) {
-        $("#totalCount").html(_count);
-       
-        loadChart(_series, _labels);
+     <script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
-        });
-        connection.start().catch(function (err) {
+    connection.on("UpdateChart", function (_series, _labels, _count) {
+        $("#totalCount").text(_count);
+        if (typeof loadChart === "function") {
+            loadChart(_series, _labels);
+        }
+    });
+
+    connection.start().catch(function (err) {
         return console.error(err.toString());
-        });
-    </script>
+    });
+</script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

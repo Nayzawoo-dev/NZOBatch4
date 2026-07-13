@@ -28,7 +28,7 @@ namespace SignaleRExample2.Controllers
         }
 
         [ActionName("Create")]
-        public IActionResult PieCreate()
+        public async Task<IActionResult> PieCreate()
         {
             return View("PieCreate");
         }
@@ -53,8 +53,10 @@ namespace SignaleRExample2.Controllers
             var _series = model.Select(x => x.Age).ToList()!;
             var _labels = model.Select(x => x.Name).ToList()!;
             _hubContext.Clients.All.SendAsync("UpdateChart",_series,_labels,model.Count);
-            return RedirectToAction("Create");
+            return Json(new { IsSuccess = true, Message = "All Fine" });
         }
+
+     
     }
 
     public class StudentModel
