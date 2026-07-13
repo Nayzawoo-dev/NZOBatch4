@@ -12,12 +12,14 @@
     @section scripts{
         <script>
             $("#btn-Save").click(function () {
-                var Name = $("#Name").val();
-                var Age = $("#Age").val();
+                var item = {
+                    Name: $("#Name").val(),
+                    Age: $("#Age").val()
+                };
                 $.ajax({
                     url: '/ApexChart/Save',
                     type: 'POST',
-                    data: { Name: Name, Age: Age },
+                    data: { requestModel : item},
                     success: function (response) {
                         
                         console.log(response);
@@ -26,7 +28,6 @@
                         $("#Age").val('');
                     },
                     error: function (xhr, status, error) {
-                        // Handle error response
                         console.error(error);
                     }
                 });
