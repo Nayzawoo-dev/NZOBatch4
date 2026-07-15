@@ -11,7 +11,7 @@ namespace PaginationExample.Controllers
         public StudentController(AppDbContext db)
         {
             _db = db;
-        }P
+        }
 
         public async Task<IActionResult> StudentList(string name, int PageNo = 1, int pageSize = 10)
         {
