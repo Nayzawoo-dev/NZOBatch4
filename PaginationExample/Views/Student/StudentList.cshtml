@@ -1,6 +1,14 @@
 ﻿@model StudentResponseModel
+@{
+    int count = (Model.PageNo - 1) * Model.PageSize;
+    string GetUrl(int pageNo, int pageSize)
+    {
+        return $"/Student/StudentList?pageNo={pageNo}&pageSize={pageSize}";
+    }
+}
 <table>
     <thead>
+        <tr>No.</tr>
         <tr>Name</tr>
         <tr>Roll_No</tr>
     </thead>
@@ -8,6 +16,7 @@
         @foreach (Student student in Model.Data)
         {
             <tr>
+                <td>@(++count)</td>
                 <td>@student.Name</td>
                 <td>@student.RollNo</td>
             </tr>
@@ -17,20 +26,19 @@
 
 <nav aria-label="...">
     <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        @* <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li> *@
-
-        @* @for (int i = 1; i <= Model.PageCount; i++)
+        @if (Model.PageNo == 1)
         {
-            <li class="page-item"><a class="page-link" href="#">@i</a></li>
-        } *@
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Previous</a>
+            </li>
 
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" href="@GetUrl(Model.PageNo - 1, Model.PageSize)">Previous</a>
+            </li>
+        }
         @if (Model.PageNo <= 3 || Model.PageNo >= Model.PageCount - 2)
         {
             for (int i = 1; i <= 4; i++)
@@ -43,7 +51,7 @@
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                    <li class="page-item"><a class="page-link" href="@GetUrl(i, Model.PageSize)">@i</a></li>
                 }
             }
 
@@ -59,13 +67,43 @@
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                    <li class="page-item"><a class="page-link" href="@GetUrl(i, Model.PageSize)">@i</a></li>
                 }
             }
         }
-      
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
+        else
+        {
+            <li class="page-item"><a class="page-link" href="@GetUrl(1, Model.PageSize)">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            for (int i = Model.PageNo - 2; i <= Model.PageNo + 2; i++)
+            {
+                if (i == Model.PageNo)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="#"><span class="sr-only">@i</span></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="@GetUrl(i, Model.PageSize)">@i</a></li>
+                }
+            }
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="@GetUrl(Model.PageCount, Model.PageSize)">@Model.PageCount</a></li>
+        }
+
+        @if (Model.PageNo == Model.PageCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" href="@GetUrl(Model.PageNo + 1, Model.PageSize)">Next</a>
+            </li>
+        }
+   
     </ul>
 </nav>
