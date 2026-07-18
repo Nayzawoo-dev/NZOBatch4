@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaginationExample", "Pagina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "Middleware\Middleware.csproj", "{A8D5E466-58AE-4B4B-9766-89CA3308DD92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthMVC", "AuthMVC\AuthMVC.csproj", "{47FB4CBD-B2CE-4006-B1F3-BD5E1EB1B88F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,10 @@ Global
 		{A8D5E466-58AE-4B4B-9766-89CA3308DD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8D5E466-58AE-4B4B-9766-89CA3308DD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D5E466-58AE-4B4B-9766-89CA3308DD92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47FB4CBD-B2CE-4006-B1F3-BD5E1EB1B88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47FB4CBD-B2CE-4006-B1F3-BD5E1EB1B88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47FB4CBD-B2CE-4006-B1F3-BD5E1EB1B88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47FB4CBD-B2CE-4006-B1F3-BD5E1EB1B88F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
