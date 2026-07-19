@@ -43,6 +43,7 @@ public class LoginController : Controller
 
         var claims = new List<Claim>
         {
+            new Claim("Username", user.Username),
             new Claim(ClaimTypes.Name, user.Username),
             new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Role, user.Role)
@@ -53,7 +54,7 @@ public class LoginController : Controller
 
         var authProperties = new AuthenticationProperties
         {
-            IsPersistent = request.RememberMe ?? false,
+            IsPersistent = request.RememberMe,
             ExpiresUtc = request.RememberMe is true ? DateTimeOffset.UtcNow.AddHours(7) : DateTimeOffset.UtcNow.AddDays(1)
         };
 
@@ -71,7 +72,7 @@ public class LoginRequest
     public string Email { get; set; }
     public string Password { get; set; }
 
-    public bool? RememberMe { get; set; }
+    public bool RememberMe { get; set; }
 }
 
 public class UserInfo
