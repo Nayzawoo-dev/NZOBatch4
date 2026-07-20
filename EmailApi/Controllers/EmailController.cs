@@ -1,0 +1,53 @@
+﻿using FluentEmail.Core;
+using FluentEmail.Core.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmailApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmailController : ControllerBase
+    {
+        private readonly IEmailService _fluentemail;
+
+        public EmailController(IEmailService fluentemail)
+        {
+            _fluentemail = fluentemail;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Send([FromBody] EmailRequest request)
+        {
+            var response = await _fluentemail.SendEmailAsync(request.To, request.Subject, request.Body);
+            return Ok(response);
+        }
+    }
+
+    public class EmailRequest
+    {
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+    }
+
+    public class EmailService : IEmailService
+    {
+        private IFluentEmail _fluentemail;
+
+        public EmailService(IFluentEmail fluentemail)
+        {
+            _fluentemail = fluentemail;
+        }
+
+        public async Task<SendResponse> SendEmailAsync(string toEmail, string subject, string body)
+        {
+            SendResponse response = await _fluentemail
+                .To(toEmail)
+                .Subject(subject)
+                .Body(body)
+                .SendAsync();
+            return response;
+        }
+    }
+}
